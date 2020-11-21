@@ -35,93 +35,93 @@ public class DominoTile {
 	public String Row1() {
 		String temp = new String();
 		if((left == 0 ||left == 1)&& (right == 0||right==1)) {
-			temp = "   |   ";
+			temp = "   |    ";
 		}
 		if((left==2||left == 3)&&(right == 0||right==1)) {
-			temp = "*  |   ";
+			temp = "*  |    ";
 		}
 		if((left == 4 || left == 5||left == 6) && (right == 1 || right == 0) ){
-			temp = "* *|   ";
+			temp = "* *|    ";
 		}
 		if((left == 0 || left == 1)&&(right == 2 || right == 3)) {
-			temp = "   |*  ";
+			temp = "   |*   ";
 		}
 		if((left == 2 || left == 3)&&(right == 2 || right == 3)) {
-			temp = "*  |*  ";
+			temp = "*  |*   ";
 		}
 		if((left == 4 || left == 5 || left == 6)&&(right == 2 || right == 3)) {
-			temp = "* *|*  ";
+			temp = "* *|*   ";
 		}
 		if((left == 0 || left == 1)&&(right == 5 || right == 4 || right == 6)) {
-			temp = "   |* *";
+			temp = "   |* * ";
 		}
 		if((left == 2 || left == 3)&&(right == 5 || right == 4 || right == 6)) {
-			temp = "*  |* *";
+			temp = "*  |* * ";
 		}
 		if((left == 4 || left == 5 || left == 6)&&(right == 5 || right == 4 || right == 6)) {
-			temp = "* *|* *";
+			temp = "* *|* * ";
 		}
 		return temp;
 	}
 	public String Row2() {
 		String temp = new String ();
 		if((left == 0 || left == 2||left == 4)&&(right == 0||right == 2||right == 4)) {
-			temp = "   |   ";
+			temp = "   |    ";
 		}
 		if((left == 1 || left == 3|| left == 5)&&(right == 0||right == 2||right == 4)) {
-			temp = " * |   ";
+			temp = " * |    ";
 		}
 		if (left == 6 && (right == 0||right == 2||right == 4)) {
-			temp = "* *|   ";
+			temp = "* *|    ";
 		}
 		if((left == 0 || left == 2||left == 4)&&(right == 1 || right == 3|| right == 5)) {
-			temp = "   | * ";
+			temp = "   | *  ";
 		}
 		if((left == 1 || left == 3|| left == 5)&&(right == 1 || right == 3|| right == 5)) {
-			temp = " * | * ";
+			temp = " * | *  ";
 		}
 		if (left == 6 && (right == 1 || right == 3|| right == 5)) {
-			temp = "* *| * ";
+			temp = "* *| *  ";
 		}
 		if((left == 0 || left == 2||left == 4)&&(right == 6)) {
-			temp = "   |* *";
+			temp = "   |* * ";
 		}
 		if((left == 1 || left == 3|| left == 5)&&(right == 6)) {
-			temp = " * |* *";
+			temp = " * |* * ";
 		}
 		if (left == 6 && (right == 6)) {
-			temp = "* *|* *";
+			temp = "* *|* * ";
 		}
 		return temp;
 	}
 	public String Row3() {
 		String temp = new String();
 		if((left == 0 ||left == 1)&& (right == 0||right==1)) {
-			temp = "   |   ";
+			temp = "   |    ";
 		}
 		if((left==2||left == 3)&&(right == 0||right==1)) {
-			temp = "  *|   ";
+			temp = "  *|    ";
 		}
 		if((left == 4 || left == 5||left == 6) && (right == 1 || right == 0) ){
-			temp = "* *|   ";
+			temp = "* *|    ";
 		}
 		if((left == 0 || left == 1)&&(right == 2 || right == 3)) {
-			temp = "   |  *";
+			temp = "   |  * ";
 		}
 		if((left == 2 || left == 3)&&(right == 2 || right == 3)) {
-			temp = "  *|  *";
+			temp = "  *|  * ";
 		}
 		if((left == 4 || left == 5 || left == 6)&&(right == 2 || right == 3)) {
-			temp = "* *|  *";
+			temp = "* *|  * ";
 		}
 		if((left == 0 || left == 1)&&(right == 5 || right == 4 || right == 6)) {
-			temp = "   |* *";
+			temp = "   |* * ";
 		}
 		if((left == 2 || left == 3)&&(right == 5 || right == 4 || right == 6)) {
-			temp = "  *|* *";
+			temp = "  *|* * ";
 		}
 		if((left == 4 || left == 5 || left == 6)&&(right == 5 || right == 4 || right == 6)) {
-			temp = "* *|* *";
+			temp = "* *|* * ";
 		}
 		return temp;
 	}
