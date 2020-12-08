@@ -3,12 +3,17 @@ package Domino;
 public class DominoTable {
 	private DominoTile [] dominos;
 	private int count;
+	TableEventListener listener;
 
 	public DominoTable () {
 		dominos = new DominoTile[28];
 		count = 0;
+		listener = null;
 	}
-	
+	public void addTableEventListener(TableEventListener listener){
+		if(listener != null)
+		this.listener=listener;
+	}
 	public boolean addRight(DominoTile newDominoTile) {
 		if(newDominoTile == null) {
 			System.out.println("Error");
@@ -22,6 +27,9 @@ public class DominoTable {
 			if(count == 0) {
 				dominos[0]=newDominoTile;
 				count++;
+				if(listener!=null) {
+					listener.onTableChanged(this);
+				}
 				System.out.println("First tile");
 				return false;
 			
@@ -30,18 +38,27 @@ public class DominoTable {
 				if(dominos[count-1].getRight()==newDominoTile.getLeft()) {
 					dominos[count]=newDominoTile;
 					count++;
+					if(listener!=null) {
+						listener.onTableChanged(this);
+					}
 					return true;
 				}
 				else if(count==1 && dominos[count-1].getLeft()==newDominoTile.getLeft()) {
 					dominos[count-1].swapLeftAndRight();
 					dominos[count]=newDominoTile;
 					count++;
+					if(listener!=null) {
+						listener.onTableChanged(this);
+					}
 					return true;
 				}
 				else if(dominos[count-1].getRight()==newDominoTile.getRight()) {
 					newDominoTile.swapLeftAndRight();
 					dominos[count]=newDominoTile;
 					count++;
+					if(listener!=null) {
+						listener.onTableChanged(this);
+					}
 					return true;
 				}
 				else if(count==1 && dominos[count-1].getLeft()==newDominoTile.getRight()) {
@@ -49,6 +66,9 @@ public class DominoTable {
 					newDominoTile.swapLeftAndRight();
 					dominos[count]=newDominoTile;
 					count++;
+					if(listener!=null) {
+						listener.onTableChanged(this);
+					}
 					return true;
 				}
 				else return false;
@@ -70,6 +90,9 @@ public class DominoTable {
 				dominos[0]=newDominoTile;
 				count++;
 				System.out.println("First tile");
+				if(listener!=null) {
+					listener.onTableChanged(this);
+				}
 				return false;
 				
 			}
@@ -79,6 +102,9 @@ public class DominoTable {
 					dominos=moveTiles(dominos);
 					dominos[0]=newDominoTile;
 					count++;
+					if(listener!=null) {
+						listener.onTableChanged(this);
+					}
 					return true;
 				}
 				else if(count==1 && dominos[0].getRight()==newDominoTile.getRight()) {
@@ -86,6 +112,9 @@ public class DominoTable {
 					dominos=moveTiles(dominos);
 					dominos[0]=newDominoTile;
 					count++;
+					if(listener!=null) {
+						listener.onTableChanged(this);
+					}
 					return true;
 				}
 				else if(dominos[0].getLeft()==newDominoTile.getLeft()) {
@@ -93,6 +122,9 @@ public class DominoTable {
 					dominos=moveTiles(dominos);
 					dominos[0]=newDominoTile;
 					count++;
+					if(listener!=null) {
+						listener.onTableChanged(this);
+					}
 					return true;
 				}
 				else if(count==1 && dominos[0].getRight()==newDominoTile.getLeft()) {
@@ -101,6 +133,9 @@ public class DominoTable {
 					dominos=moveTiles(dominos);
 					dominos[0]=newDominoTile;
 					count++;
+					if(listener!=null) {
+						listener.onTableChanged(this);
+					}
 					return true;
 				}
 				else return false;
@@ -109,10 +144,35 @@ public class DominoTable {
 		}
 	}
 	public void print () {
-		for(int i = 0; i <count; i++) {
-			System.out.println(dominos[i].toString());
-			
+		int i = 0;
+		while (i < count) {
+			if(i<count-1)
+				System.out.print(dominos[i].Row1()+" ");
+			if(i==count-1)
+				System.out.print(dominos[i].Row1());
+			i++;
 		}
+		
+		i = 0;
+		System.out.println();
+		while (i < count) {
+			if(i<count-1)
+				System.out.print(dominos[i].Row2()+" ");
+			if(i==count-1)
+				System.out.print(dominos[i].Row2());
+			i++;
+		}
+		i = 0;
+		System.out.println();
+		while (i < count) {
+			if(i<count-1)
+				System.out.print(dominos[i].Row3()+" ");
+			if(i==count-1)
+				System.out.print(dominos[i].Row3());
+			i++;
+		}
+		System.out.println();
+		System.out.println();
 		
 	}
 	

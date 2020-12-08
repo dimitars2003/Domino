@@ -133,6 +133,7 @@ public class DominoTile {
 			if(d1.left==left&&d1.right==right) {
 				return true;	
 			}
+			
 			else return false;
 		}
 }
