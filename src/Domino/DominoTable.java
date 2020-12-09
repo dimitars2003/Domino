@@ -3,12 +3,18 @@ package Domino;
 public class DominoTable {
 	private DominoTile [] dominos;
 	private int count;
-	TableEventListener listener;
+	private TableEventListener listener;
 
 	public DominoTable () {
 		dominos = new DominoTile[28];
 		count = 0;
 		listener = null;
+	}
+	public int getCount() {
+		return count;
+	}
+	public DominoTile[] getTiles() {
+		return dominos;
 	}
 	public void addTableEventListener(TableEventListener listener){
 		if(listener != null)
