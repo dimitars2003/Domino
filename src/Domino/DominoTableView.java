@@ -37,9 +37,10 @@ public class DominoTableView extends JComponent{
 		
 		
 		for(int i = 0; i < table.getCount();i++) {
-			System.out.println("ok");
+			
 			g.setColor(Color.black);
-			g.drawRect(x, y, 80, 40);
+			g.fill(new Rectangle2D.Double(x, y, 80, 40));
+			g.setColor(Color.white);
 			g.drawLine(x+80-40, 20, x+80-40, 60);
 			
 			drawDotsLeft(tiles[i].getLeft(),x,y,g,40, 40);
@@ -50,6 +51,7 @@ public class DominoTableView extends JComponent{
 		
 	}
 	private void drawDotsLeft(int dots, int x, int y,Graphics2D g, int lenght, int width) {
+		g.setColor(Color.white);
 		int r = 5;
 		if(dots == 1) {
 			
@@ -88,6 +90,7 @@ public class DominoTableView extends JComponent{
 	}
 	
 	private void drawDotsRight(int dots, int x, int y,Graphics2D g, int lenght, int width) {
+		g.setColor(Color.white);
 		int r = 5;
 		if(dots == 1) {
 			
@@ -122,6 +125,9 @@ public class DominoTableView extends JComponent{
 			g.drawOval(x-(r/2)+lenght/4*3, y-(r/2)+width/4*3, r, r);
 			g.drawOval(x-(r/2)+lenght/4, y-(r/2)+width/2, r, r);
 			g.drawOval(x-(r/2)+lenght/4*3, y-(r/2)+width/2, r, r);
+			
 		}
+		
+		
 	}
 }
