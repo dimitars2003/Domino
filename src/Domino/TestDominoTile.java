@@ -34,6 +34,7 @@ public class TestDominoTile {
 		gui.setBounds(20,20,600,300);
 		gui.setVisible(true);
 		f.add(gui);
+		
 	}
 
 }

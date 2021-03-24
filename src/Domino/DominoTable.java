@@ -1,21 +1,24 @@
 package Domino;
 
 public class DominoTable {
-	private DominoTile [] dominos;
+	
 	private int count;
 	private TableEventListener listener;
-
+	private Deck<DominoTile> dominoTable;
+	
 	public DominoTable () {
-		dominos = new DominoTile[28];
-		count = 0;
-		listener = null;
+		dominoTable = new Deck<>();
 	}
+	
+	public Deck<DominoTile> getDominoTable()
+	{
+		return this.dominoTable;
+	}
+	
 	public int getCount() {
 		return count;
 	}
-	public DominoTile[] getTiles() {
-		return dominos;
-	}
+	
 	public void addTableEventListener(TableEventListener listener){
 		if(listener != null)
 		this.listener=listener;
@@ -30,19 +33,49 @@ public class DominoTable {
 			return false;
 		}
 		else {
-			if(count == 0) {
-				dominos[0]=newDominoTile;
+			if(dominoTable.isEmpty())
+			{
+				dominoTable.addRight(newDominoTile);
 				count++;
-				if(listener!=null) {
-					listener.onTableChanged(this);
-				}
-				System.out.println("First tile");
-				return false;
-			
+				return true;
 			}
 			else {
-				if(dominos[count-1].getRight()==newDominoTile.getLeft()) {
-					dominos[count]=newDominoTile;
+				if(dominoTable.getRight().getRight()==newDominoTile.getRight()||
+						dominoTable.getRight().getRight()==newDominoTile.getLeft()) {
+							if(dominoTable.getRight().getRight()==newDominoTile.getRight()) {
+								newDominoTile.swapLeftAndRight();
+								dominoTable.addRight(newDominoTile);
+								count++;
+								if(listener!=null) {
+									listener.onTableChanged(this);
+									
+								}
+								return true;
+							}
+							if(dominoTable.getRight().getRight()==newDominoTile.getLeft()){
+								dominoTable.addRight(newDominoTile);
+								count++;
+								if(listener!=null) {
+									listener.onTableChanged(this);
+								}
+								return true;
+							}
+							if(dominoTable.getRight().getLeft()==newDominoTile.getRight()&&count==1) {
+								dominoTable.getRight().swapLeftAndRight();
+								newDominoTile.swapLeftAndRight();
+								dominoTable.addRight(newDominoTile);
+								count++;
+								if(listener!=null) {
+									listener.onTableChanged(this);
+									
+								}
+								return true;
+							}
+				}
+			}
+		}
+		return false;
+					/*dominos[count]=newDominoTile;
 					count++;
 					if(listener!=null) {
 						listener.onTableChanged(this);
@@ -79,7 +112,8 @@ public class DominoTable {
 				}
 				else return false;
 			}
-		}
+				
+		}*/
 	}
 	
 	public boolean addLeft(DominoTile newDominoTile) {
@@ -91,8 +125,50 @@ public class DominoTable {
 			System.out.println("Full");
 			return false;
 		}
+		if(dominoTable.isEmpty())
+		{
+			dominoTable.addLeft(newDominoTile);
+			count++;
+			return true;
+		}
 		else {
-			if(count == 0) {
+			if(dominoTable.getLeft().getLeft()==newDominoTile.getRight()||
+					dominoTable.getLeft().getLeft()==newDominoTile.getLeft()) {
+						if(dominoTable.getLeft().getLeft()==newDominoTile.getLeft()) {
+							newDominoTile.swapLeftAndRight();
+							dominoTable.addLeft(newDominoTile);
+							count++;
+							if(listener!=null) {
+								listener.onTableChanged(this);
+								
+							}
+							return true;
+						}
+						if(dominoTable.getLeft().getLeft()==newDominoTile.getRight()){
+							dominoTable.addLeft(newDominoTile);
+							count++;
+							if(listener!=null) {
+								listener.onTableChanged(this);
+							}
+							return true;
+						}
+						if(dominoTable.getLeft().getRight()==newDominoTile.getLeft()&&count==1) {
+							dominoTable.getRight().swapLeftAndRight();
+							newDominoTile.swapLeftAndRight();
+							dominoTable.addLeft(newDominoTile);
+							count++;
+							if(listener!=null) {
+								listener.onTableChanged(this);
+								
+							}
+							return true;
+						}
+			
+		
+			}
+		}
+		return false;
+			/*if(count == 0) {
 				dominos[0]=newDominoTile;
 				count++;
 				System.out.println("First tile");
@@ -102,7 +178,7 @@ public class DominoTable {
 				return false;
 				
 			}
-
+			 
 			else {
 				if(dominos[0].getLeft()==newDominoTile.getRight()) {
 					dominos=moveTiles(dominos);
@@ -147,11 +223,38 @@ public class DominoTable {
 				else return false;
 				
 			}
-		}
+		}*/
 	}
 	public void print () {
-		int i = 0;
-		while (i < count) {
+		
+		Iterator<DominoTile> it = dominoTable.getIterator();
+		while(it.hasNext())
+		{
+			DominoTile temp = it.next();
+			System.out.print(temp.Row1() + " ");
+			
+		}
+		System.out.println();
+		it = dominoTable.getIterator();
+		while(it.hasNext())
+		{
+			DominoTile temp = it.next();
+			System.out.print(temp.Row2() + " ");
+			
+			
+		}
+		System.out.println();
+		it = dominoTable.getIterator();
+		while(it.hasNext())
+		{
+			DominoTile temp = it.next();
+			System.out.print(temp.Row3() + " ");
+			
+			
+		}
+		System.out.println();
+		System.out.println();
+		/*while (i < count) {
 			if(i<count-1)
 				System.out.print(dominos[i].Row1()+" ");
 			if(i==count-1)
@@ -179,7 +282,7 @@ public class DominoTable {
 		}
 		System.out.println();
 		System.out.println();
-		
+		*/
 	}
 	
 	public DominoTile[] moveTiles(DominoTile[] dominos) {

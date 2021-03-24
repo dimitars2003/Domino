@@ -29,6 +29,9 @@ public class DominoTile {
 		right=left;
 		left=temp;
 	}
+	
+	
+	
 	public String toString() {
 		return Row1() + "\n" + Row2() + "\n" + Row3();
 	}
